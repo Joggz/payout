@@ -10,28 +10,36 @@ const Dashboard = () => {
       value: '$124,580',
       change: '+12.5%',
       icon: ArrowDownLeft,
-      color: 'text-green-600'
+      color: 'text-emerald-600',
+      bgColor: 'bg-gradient-to-br from-emerald-500 to-green-600',
+      lightBg: 'bg-emerald-50'
     },
     {
       title: 'Total Outward',
       value: '$89,420',
       change: '+8.2%',
       icon: ArrowUpRight,
-      color: 'text-red-600'
+      color: 'text-rose-600',
+      bgColor: 'bg-gradient-to-br from-rose-500 to-red-600',
+      lightBg: 'bg-rose-50'
     },
     {
       title: 'Net Balance',
       value: '$35,160',
       change: '+4.3%',
       icon: DollarSign,
-      color: 'text-blue-600'
+      color: 'text-blue-600',
+      bgColor: 'bg-gradient-to-br from-blue-500 to-indigo-600',
+      lightBg: 'bg-blue-50'
     },
     {
       title: 'Growth',
       value: '23.5%',
       change: '+2.1%',
       icon: TrendingUp,
-      color: 'text-purple-600'
+      color: 'text-purple-600',
+      bgColor: 'bg-gradient-to-br from-purple-500 to-violet-600',
+      lightBg: 'bg-purple-50'
     }
   ];
 
@@ -45,24 +53,26 @@ const Dashboard = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div>
-        <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
+      <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
+        <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Dashboard</h1>
         <p className="text-gray-600 mt-2">Overview of your account activity</p>
       </div>
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {stats.map((stat) => (
-          <Card key={stat.title}>
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-gray-600">
+          <Card key={stat.title} className="border-0 shadow-lg hover:shadow-xl transition-shadow duration-300">
+            <CardHeader className={`flex flex-row items-center justify-between space-y-0 pb-2 ${stat.lightBg} rounded-t-lg`}>
+              <CardTitle className="text-sm font-medium text-gray-700">
                 {stat.title}
               </CardTitle>
-              <stat.icon className={`h-4 w-4 ${stat.color}`} />
+              <div className={`p-2 rounded-lg ${stat.bgColor}`}>
+                <stat.icon className="h-4 w-4 text-white" />
+              </div>
             </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">{stat.value}</div>
-              <p className="text-xs text-green-600 mt-1">
+            <CardContent className="bg-white rounded-b-lg">
+              <div className="text-2xl font-bold text-gray-900">{stat.value}</div>
+              <p className="text-xs text-emerald-600 mt-1 font-medium">
                 {stat.change} from last month
               </p>
             </CardContent>
@@ -71,28 +81,28 @@ const Dashboard = () => {
       </div>
 
       {/* Recent Transactions */}
-      <Card>
-        <CardHeader>
-          <CardTitle>Recent Transactions</CardTitle>
+      <Card className="border-0 shadow-lg">
+        <CardHeader className="bg-gradient-to-r from-gray-50 to-gray-100 rounded-t-lg">
+          <CardTitle className="text-gray-800">Recent Transactions</CardTitle>
         </CardHeader>
-        <CardContent>
+        <CardContent className="bg-white rounded-b-lg">
           <div className="space-y-4">
             {recentTransactions.map((transaction) => (
-              <div key={transaction.id} className="flex items-center justify-between p-4 border rounded-lg">
+              <div key={transaction.id} className="flex items-center justify-between p-4 border border-gray-100 rounded-lg hover:shadow-md transition-shadow duration-200">
                 <div className="flex items-center space-x-4">
-                  <div className={`w-2 h-2 rounded-full ${
-                    transaction.type === 'Inward' ? 'bg-green-500' : 'bg-red-500'
+                  <div className={`w-3 h-3 rounded-full ${
+                    transaction.type === 'Inward' ? 'bg-gradient-to-r from-emerald-400 to-green-500' : 'bg-gradient-to-r from-rose-400 to-red-500'
                   }`} />
                   <div>
-                    <p className="font-medium">{transaction.type}</p>
+                    <p className="font-medium text-gray-900">{transaction.type}</p>
                     <p className="text-sm text-gray-500">{transaction.date}</p>
                   </div>
                 </div>
                 <div className="text-right">
-                  <p className="font-medium">{transaction.amount}</p>
-                  <p className={`text-sm ${
-                    transaction.status === 'Completed' ? 'text-green-600' :
-                    transaction.status === 'Pending' ? 'text-yellow-600' : 'text-red-600'
+                  <p className="font-medium text-gray-900">{transaction.amount}</p>
+                  <p className={`text-sm font-medium ${
+                    transaction.status === 'Completed' ? 'text-emerald-600' :
+                    transaction.status === 'Pending' ? 'text-amber-600' : 'text-rose-600'
                   }`}>
                     {transaction.status}
                   </p>

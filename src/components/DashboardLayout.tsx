@@ -5,7 +5,7 @@ import Sidebar from './Sidebar';
 
 const DashboardLayout = () => {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
       <Sidebar />
       <div className="lg:ml-64 ml-16">
         <main className="p-6">
