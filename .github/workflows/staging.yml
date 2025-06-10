@@ -48,8 +48,8 @@ jobs:
           git rm bun.lockb
           git rm components.json
           git rm eslint.config.js
-           ls -la 
-          git rm node_modules
+#           ls -la
+#          git rm node_modules
           git rm index.html
           git rm package-lock.json
           git rm package.json
