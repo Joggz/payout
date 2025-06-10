@@ -41,13 +41,14 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git checkout -B sandboxDeployment
-          ls -la 
+         
            git rm -r .github
           git rm -r README.md
           git rm -r public
           git rm bun.lockb
           git rm components.json
           git rm eslint.config.js
+           ls -la 
           git rm node_modules
           git rm index.html
           git rm package-lock.json
