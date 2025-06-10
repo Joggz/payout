@@ -18,6 +18,7 @@ const AccountStatement = () => {
     { id: 'STMT005', date: '2024-01-12', description: 'Payment from JKL Corp', type: 'Credit', amount: '+$7,200', balance: '$29,410' },
   ];
 
+
   const handleApplyFilters = (newFilters: any) => {
     setFilters(newFilters);
     console.log('Applied filters:', newFilters);
@@ -67,11 +68,13 @@ const AccountStatement = () => {
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Date</TableHead>
-                <TableHead>Description</TableHead>
-                <TableHead>Type</TableHead>
-                <TableHead>Amount</TableHead>
-                <TableHead>Balance</TableHead>
+                <TableHead>Session ID</TableHead>
+                <TableHead>Debit Account</TableHead>
+                <TableHead>Credit Account</TableHead>
+                <TableHead>Credit Amount</TableHead>
+                <TableHead>Narration</TableHead>
+                <TableHead>Transaction Refernece</TableHead>
+                <TableHead>Transaction Status</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>

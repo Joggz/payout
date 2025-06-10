@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAuthStore } from '../store/authStore';
+import { useNavigate, Link } from 'react-router-dom';
+import { useAppStore } from '../store';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -11,15 +11,22 @@ const LoginForm = () => {
   const [email, setEmail] = useState('admin@example.com');
   const [password, setPassword] = useState('password');
   const [isLoading, setIsLoading] = useState(false);
-  const login = useAuthStore((state) => state.login);
+  // const login = useAppStore((state) => state.login);
   const navigate = useNavigate();
+
+  const login = useAppStore((state) => state.login);
+  const loading = useAppStore((state) => state.loading);
+  const error = useAppStore((state) => state.error);
+  // const clearError = useAppStore((state) => state.clearError);
+
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
 
     try {
-      const success = await login(email, password);
+      const success = await login({email, password});
       if (success) {
         toast({
           title: "Login successful",
@@ -60,45 +67,58 @@ const LoginForm = () => {
             <div>
               <Label htmlFor="email">Email address</Label>
               <Input
-                id="email"
-                name="email"
-                type="email"
-                autoComplete="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="mt-1"
+                  id="email"
+                  name="email"
+                  type="email"
+                  autoComplete="email"
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="mt-1"
               />
             </div>
             <div>
               <Label htmlFor="password">Password</Label>
               <Input
-                id="password"
-                name="password"
-                type="password"
-                autoComplete="current-password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="mt-1"
+                  id="password"
+                  name="password"
+                  type="password"
+                  autoComplete="current-password"
+                  required
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="mt-1"
               />
             </div>
           </div>
 
           <Button
-            type="submit"
-            disabled={isLoading}
-            className="w-full"
+              type="submit"
+              disabled={loading}
+              className="w-full"
           >
-            {isLoading ? 'Signing in...' : 'Sign in'}
+            {loading ? 'Signing in...' : 'Sign in'}
           </Button>
         </form>
-        <div className="text-sm text-gray-500 text-center">
-          Demo credentials: admin@example.com / password
+        <div className="mt-6 space-y-4">
+          <div className="text-sm text-gray-500 text-center">
+            Demo credentials: admin@example.com / password
+          </div>
+          <div className="border-t pt-4">
+            <p className="text-center text-sm text-gray-600">
+              New business?{' '}
+              <Link
+                  to="/signup"
+                  className="text-blue-600 hover:text-blue-500 font-medium"
+              >
+                Create your  account
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-  );
-};
+      </div>
+      );
+      };
 
-export default LoginForm;
+      export default LoginForm;

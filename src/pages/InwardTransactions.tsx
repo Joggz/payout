@@ -11,12 +11,58 @@ const InwardTransactions = () => {
   const [filters, setFilters] = useState({});
 
   const transactions = [
-    { id: 'TXN001', date: '2024-01-15', amount: '$5,200', status: 'Completed', reference: 'REF001', from: 'ABC Corp' },
-    { id: 'TXN002', date: '2024-01-14', amount: '$3,800', status: 'Pending', reference: 'REF002', from: 'XYZ Ltd' },
-    { id: 'TXN003', date: '2024-01-14', amount: '$2,100', status: 'Completed', reference: 'REF003', from: 'DEF Inc' },
-    { id: 'TXN004', date: '2024-01-13', amount: '$1,500', status: 'Failed', reference: 'REF004', from: 'GHI Co' },
-    { id: 'TXN005', date: '2024-01-12', amount: '$7,200', status: 'Completed', reference: 'REF005', from: 'JKL Corp' },
+    {
+      sessionId: 'SES001',
+      debitAccount: '1234567890',
+      creditAccount: '0987654321',
+      creditAmount: '$5,200',
+      narration: 'Salary Payment',
+      transactionReference: 'TXN-001-2024',
+      transactionStatus: 'Completed',
+      datePosted: '2024-01-15'
+    },
+    {
+      sessionId: 'SES002',
+      debitAccount: '1234567890',
+      creditAccount: '1122334455',
+      creditAmount: '$3,800',
+      narration: 'Vendor Payment',
+      transactionReference: 'TXN-002-2024',
+      transactionStatus: 'Pending',
+      datePosted: '2024-01-14'
+    },
+    {
+      sessionId: 'SES003',
+      debitAccount: '5566778899',
+      creditAccount: '1234567890',
+      creditAmount: '$2,100',
+      narration: 'Invoice Settlement',
+      transactionReference: 'TXN-003-2024',
+      transactionStatus: 'Completed',
+      datePosted: '2024-01-14'
+    },
+    {
+      sessionId: 'SES004',
+      debitAccount: '1234567890',
+      creditAccount: '9988776655',
+      creditAmount: '$1,500',
+      narration: 'Utility Payment',
+      transactionReference: 'TXN-004-2024',
+      transactionStatus: 'Failed',
+      datePosted: '2024-01-13'
+    },
+    {
+      sessionId: 'SES005',
+      debitAccount: '2233445566',
+      creditAccount: '1234567890',
+      creditAmount: '$4,200',
+      narration: 'Contract Payment',
+      transactionReference: 'TXN-005-2024',
+      transactionStatus: 'Completed',
+      datePosted: '2024-01-12'
+    }
   ];
+
 
   const handleApplyFilters = (newFilters: any) => {
     setFilters(newFilters);
@@ -65,18 +111,24 @@ const InwardTransactions = () => {
             </TableHeader>
             <TableBody>
               {transactions.map((transaction) => (
-                <TableRow key={transaction.id}>
-                  <TableCell className="font-medium">{transaction.id}</TableCell>
-                  <TableCell>{transaction.date}</TableCell>
-                  <TableCell>{transaction.from}</TableCell>
-                  <TableCell className="font-medium">{transaction.amount}</TableCell>
-                  <TableCell>{transaction.reference}</TableCell>
-                  <TableCell>
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(transaction.status)}`}>
-                      {transaction.status}
+                  <TableRow key={transaction.sessionId}>
+                    <TableCell className="font-medium">{transaction.sessionId}</TableCell>
+                    <TableCell>{transaction.debitAccount}</TableCell>
+                    <TableCell>{transaction.creditAccount}</TableCell>
+                    <TableCell className="font-medium">{transaction.creditAmount}</TableCell>
+                    <TableCell>{transaction.narration}</TableCell>
+                    <TableCell>{transaction.transactionReference}</TableCell>
+                    <TableCell>
+                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                        transaction.transactionStatus === 'Completed' ? 'bg-emerald-100 text-emerald-700' :
+                            transaction.transactionStatus === 'Pending' ? 'bg-amber-100 text-amber-700' :
+                                'bg-rose-100 text-rose-700'
+                    }`}>
+                      {transaction.transactionStatus}
                     </span>
-                  </TableCell>
-                </TableRow>
+                    </TableCell>
+                    <TableCell>{transaction.datePosted}</TableCell>
+                  </TableRow>
               ))}
             </TableBody>
           </Table>

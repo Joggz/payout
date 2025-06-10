@@ -4,12 +4,12 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { useAuthStore } from '../store/authStore';
+import { useAppStore } from '../store';
 import { toast } from '@/hooks/use-toast';
 import { User, Lock, Save } from 'lucide-react';
 
 const Profile = () => {
-  const user = useAuthStore((state) => state.user);
+  const user = useAppStore((state) => state.user);
   const [formData, setFormData] = useState({
     name: user?.name || '',
     email: user?.email || '',

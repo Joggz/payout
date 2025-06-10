@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { useAuthStore } from '../store/authStore';
+import { useAppStore } from '../store';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import {
@@ -21,7 +21,7 @@ const Sidebar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [expandedItems, setExpandedItems] = useState<string[]>(['inward', 'outward']);
   const location = useLocation();
-  const logout = useAuthStore((state) => state.logout);
+  const logout = useAppStore((state) => state.logout);
 
   const toggleExpanded = (item: string) => {
     setExpandedItems(prev =>
@@ -67,6 +67,12 @@ const Sidebar = () => {
       title: 'Profile',
       icon: User,
       path: '/profile'
+    },
+    {
+      id: 'profile',
+      title: 'Developer',
+      icon: User,
+      path: '/developer'
     }
   ];
 
@@ -90,7 +96,7 @@ const Sidebar = () => {
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-gray-200">
           {!isCollapsed && (
-            <h1 className="text-xl font-bold text-gray-800">Admin Panel</h1>
+            <h1 className="text-xl font-bold text-gray-800">Dway Remit</h1>
           )}
           <Button
             variant="ghost"

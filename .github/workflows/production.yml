@@ -1,0 +1,66 @@
+name: Deploy To Production
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    env:
+      ENDPOINT_URL: 'https://app.dwayremit.com/v2'
+
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+
+      - name: Create Node Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: 16.x
+
+      - name: Set Timezone
+        uses: szenius/set-timezone@v2.0
+        with:
+          timezoneLinux: "UTC"
+
+      - name: Install Packages and Build Application
+        run: |
+          npm install
+          VITE_ENV=production VITE_USER_SERVICE_URL="${ENDPOINT_URL}" npm run build
+
+      - name: Commit built assets
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git checkout -B productionDeployment
+          git rm -r .github
+          git rm -r .vite
+          git rm -r public
+          git rm -r src
+          git rm .env
+          git rm .env.template
+          git rm .npmrc
+          git rm README.md
+          git rm deploy.js
+          git rm index.html
+          git rm package-lock.json
+          git rm package.json
+          git rm postcss.config.js
+          git rm tailwind.config.js
+          git rm vercel.json
+          git rm vite.config.js
+          git rm -f yarn.lock
+          git add .
+          git commit -m "Build Admin"
+          git push -f origin productionDeployment
+
+      - name: Deploy via scp
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.HOST }}
+          USERNAME: ${{ secrets.USERNAME }}
+          PORT: ${{ secrets.PORT }}
+          KEY: ${{ secrets.SSHKEY }}
+          source: 'dist/*'
+          target: /var/www/adminv2
