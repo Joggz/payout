@@ -43,22 +43,23 @@ jobs:
           git checkout -B sandboxDeployment
           ls -la 
            git rm -r .github
-          git rm -r .vite
+          git rm -r README.md
           git rm -r public
-          git rm -r src
-          git rm .env
-          git rm .env.template
-          git rm .npmrc
-          git rm README.md
-          git rm deploy.js
+          git rm bun.lockb
+          git rm components.json
+          git rm eslint.config.js
+          git rm node_modules
           git rm index.html
           git rm package-lock.json
           git rm package.json
           git rm postcss.config.js
-          git rm tailwind.config.js
-          git rm vercel.json
-          git rm vite.config.js
-          git rm -f yarn.lock
+          git rm tailwind.config.ts
+          git rm tsconfig.app.json
+          git rm -r tsconfig.node.json
+          git rm -r vite.config.ts
+          git rm -r vitest.config.ts
+          git rm -r src
+          git rm .env
           git add .
           git commit -m "Build Staging"
           git push -f origin sandboxDeployment
