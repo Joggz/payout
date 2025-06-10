@@ -71,4 +71,4 @@ jobs:
           PORT: ${{ secrets.PORT }}
           KEY: ${{ secrets.SSHKEY }}
           source: 'dist/*'
-          target: /var/www/adminv2stage
+          target: /var/www/payoutsandbox
