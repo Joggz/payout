@@ -96,7 +96,7 @@ const Sidebar = () => {
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-gray-200">
           {!isCollapsed && (
-            <h1 className="text-xl font-bold text-gray-800">Dway Remit</h1>
+            <h1 className="text-xl font-bold text-gray-800">MFBPayout</h1>
           )}
           <Button
             variant="ghost"

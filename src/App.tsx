@@ -16,6 +16,7 @@ import OutwardReports from "./pages/OutwardReports";
 import AccountStatement from "./pages/AccountStatement";
 import LandingPage from "@/components/LandingPage.tsx";
 import Profile from "./pages/Profile";
+import DeveloperSection from "./pages/DeveloperSection.tsx"
 import {useAppStore} from "@/store";
 import {useEffect} from "react";
 
@@ -40,7 +41,7 @@ const App = () => {
       <Sonner />
       <BrowserRouter>
         <Routes>
-          {/*<Route path="/" element={<LandingPage />} />*/}
+          <Route path="/" element={<LandingPage />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/signup" element={<BusinessSignupForm />} />
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
@@ -56,6 +57,7 @@ const App = () => {
             <Route path="outward/reports" element={<OutwardReports />} />
             <Route path="account-statement" element={<AccountStatement />} />
             <Route path="profile" element={<Profile />} />
+            {/*<Route path="/developer" element={<DeveloperSection />} />*/}
           </Route>
         </Routes>
       </BrowserRouter>
