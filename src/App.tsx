@@ -57,7 +57,7 @@ const App = () => {
             <Route path="outward/reports" element={<OutwardReports />} />
             <Route path="account-statement" element={<AccountStatement />} />
             <Route path="profile" element={<Profile />} />
-            {/*<Route path="/developer" element={<DeveloperSection />} />*/}
+            <Route path="/developer" element={<DeveloperSection />} />
           </Route>
         </Routes>
       </BrowserRouter>

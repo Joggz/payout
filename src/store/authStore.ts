@@ -56,7 +56,7 @@ export const createAuthSlice = (set: any, get: any, store: any): AuthSlice => ({
             //     isAuthenticated: true,
             // });
 
-            // return true;
+            return true;
         } catch (error) {
             console.error('Login failed:', error);
             set({ loading: false, error: error });
@@ -66,26 +66,26 @@ export const createAuthSlice = (set: any, get: any, store: any): AuthSlice => ({
     },
     registerBusiness: async (payload: registerBusinessAccount) => {
         // Check if user already exists
-        // const data = await onboardBusiness(payload);
-        // console.log("data ====>", data)
-        const existingUser = mockUsers.find(u => u.email === payload.email);
-        if (existingUser) {
-            return false; // User already exists
-        }
-
-        // Create new business user
-        const newUser = {
-            id: Date.now().toString(),
-            ...payload,
-            role: 'business' as UserRole,
-
-        };
-
-        mockUsers.push(newUser);
-
-        const { password: _, ...userWithoutPassword } = newUser;
-        const token = 'mock-jwt-token';
-        set({ user: userWithoutPassword, token, isAuthenticated: true });
+        const data = await onboardBusiness(payload);
+        console.log("data ====>", data)
+        // const existingUser = mockUsers.find(u => u.email === payload.email);
+        // if (existingUser) {
+        //     return false; // User already exists
+        // }
+        //
+        // // Create new business user
+        // const newUser = {
+        //     id: Date.now().toString(),
+        //     ...payload,
+        //     role: 'business' as UserRole,
+        //
+        // };
+        //
+        // mockUsers.push(newUser);
+        //
+        // const { password: _, ...userWithoutPassword } = newUser;
+        // const token = 'mock-jwt-token';
+        // set({ user: userWithoutPassword, token, isAuthenticated: true });
         return true;
     },
     logout: () => set({ user: null, token: null, isAuthenticated: false }),

@@ -7,7 +7,9 @@ import {REACT_APP_API_URL} from "./utilites/config";
 export const authorized = axios.create({
     baseURL: REACT_APP_API_URL,
 });
-export const unauthorized = axios.create()
+export const unauthorized = axios.create({
+    baseURL: REACT_APP_API_URL,
+})
 
 
 authorized.interceptors.request.use(

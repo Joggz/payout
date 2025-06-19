@@ -69,7 +69,7 @@ const Sidebar = () => {
       path: '/profile'
     },
     {
-      id: 'profile',
+      id: 'developer',
       title: 'Developer',
       icon: User,
       path: '/developer'

@@ -10,20 +10,31 @@ import { Building2, ArrowLeft } from 'lucide-react';
 
 const BusinessSignupForm = () => {
     const [formData, setFormData] = useState({
-        email: '',
-        password: '',
-        confirmPassword: '',
-        name: '',
-        businessName: '',
-        // firstName: '',
-        // lastName: '',
-        phone: "",
+
+        email: "info@techhub.com",
+        password: "SecurePass123!",
+        confirmPassword: "SecurePass123!",
+        name: "Ada Obi",
+        businessName: "Tech Hub Solutions",
+        phone: "+2348012345678",
+        address: "12A Herbert Macaulay Way, Lagos",
+
+        // email: '',
+        // password: '',
+        // confirmPassword: '',
+        // name: '',
+        // businessName: '',
+        // address: '',
+        // // firstName: '',
+        // // lastName: '',
+        // phone: "",
     });
     const [isLoading, setIsLoading] = useState(false);
     const registerBusiness = useAppStore((state) => state.registerBusiness);
     const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent) => {
+        console.log(formData);
         e.preventDefault();
 
         if (formData.password !== formData.confirmPassword) {
@@ -46,12 +57,24 @@ const BusinessSignupForm = () => {
 
         setIsLoading(true);
 
+        const payload = {
+                email: "info@techhub.com",
+                password: "SecurePass123!",
+                contact_name: "Ada Obi",
+                businessName: "Tech Hub Solutions",
+                phone: "+2348012345678",
+                address: "12A Herbert Macaulay Way, Lagos",
+            }
+
         try {
+            // const success = await registerBusiness(payload);
             const success = await registerBusiness({
                email: formData.email,
                password: formData.password,
-               name: formData.name,
-                businessName: formData.businessName
+               contact_name: formData.name,
+                business_name: formData.businessName,
+                phone: formData.phone,
+                address: formData.address,
             });
 
             if (success) {
@@ -148,6 +171,17 @@ const BusinessSignupForm = () => {
                                 value={formData.phone}
                                 onChange={handleInputChange('phone')}
                                 placeholder="090483838539"
+                            />
+                        </div>
+                        <div className="space-y-2">
+                            <Label htmlFor="address"> Address</Label>
+                            <Input
+                                id="address"
+                                type="text"
+                                required
+                                value={formData.address}
+                                onChange={handleInputChange('address')}
+                                placeholder="Lagos, Nigeria"
                             />
                         </div>
 

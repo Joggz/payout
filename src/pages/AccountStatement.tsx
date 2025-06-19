@@ -1,14 +1,26 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import FilterModal from '../components/FilterModal';
 import { Filter, Download } from 'lucide-react';
+import {useAppStore} from "@/store";
 
 const AccountStatement = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [filters, setFilters] = useState({});
+  const fetchAccountStatement = useAppStore(state => state.fetchAccountStatement);
+  const loading = useAppStore((state) => state.loading);
+  const error = useAppStore((state) => state.error);
+  const accountStatement = useAppStore((state) => state.accountStatement);
+
+  useEffect(() => {
+    fetchAccountStatement()
+  }, [accountStatement]);
+
+  console.log(accountStatement, loading, error);
+
 
   const statements = [
     { id: 'STMT001', date: '2024-01-15', description: 'Payment from ABC Corp', type: 'Credit', amount: '+$5,200', balance: '$35,160' },

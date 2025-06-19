@@ -1,14 +1,25 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import FilterModal from '../components/FilterModal';
 import { Filter } from 'lucide-react';
+import { useAppStore } from '@/store'
 
 const InwardTransactions = () => {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [filters, setFilters] = useState({});
+
+  const fetchTransactions = useAppStore(state => state.getTransactions);
+  const loading = useAppStore((state) => state.loading);
+  const error = useAppStore((state) => state.error);
+  const inwardTxs = useAppStore((state) => state.inward);
+
+  useEffect(() => {
+    fetchTransactions("inward")
+  }, [inwardTxs]);
+
 
   const transactions = [
     {
@@ -110,24 +121,18 @@ const InwardTransactions = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {transactions.map((transaction) => (
-                  <TableRow key={transaction.sessionId}>
-                    <TableCell className="font-medium">{transaction.sessionId}</TableCell>
-                    <TableCell>{transaction.debitAccount}</TableCell>
-                    <TableCell>{transaction.creditAccount}</TableCell>
-                    <TableCell className="font-medium">{transaction.creditAmount}</TableCell>
-                    <TableCell>{transaction.narration}</TableCell>
-                    <TableCell>{transaction.transactionReference}</TableCell>
+              {inwardTxs.map((transaction) => (
+                  <TableRow key={transaction.id} className="hover:bg-gray-50 transition-colors">
+                    <TableCell className="font-medium text-gray-900">{transaction.id}</TableCell>
+                    <TableCell className="text-gray-600">{transaction.date}</TableCell>
+                    <TableCell className="text-gray-900">{transaction.to}</TableCell>
+                    <TableCell className="font-medium text-gray-900">{transaction.amount}</TableCell>
+                    <TableCell className="text-gray-600">{transaction.reference}</TableCell>
                     <TableCell>
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                        transaction.transactionStatus === 'Completed' ? 'bg-emerald-100 text-emerald-700' :
-                            transaction.transactionStatus === 'Pending' ? 'bg-amber-100 text-amber-700' :
-                                'bg-rose-100 text-rose-700'
-                    }`}>
-                      {transaction.transactionStatus}
+                    <span className={`px-3 py-1 rounded-full text-xs font-medium border ${getStatusColor(transaction.status)}`}>
+                      {transaction.status}
                     </span>
                     </TableCell>
-                    <TableCell>{transaction.datePosted}</TableCell>
                   </TableRow>
               ))}
             </TableBody>

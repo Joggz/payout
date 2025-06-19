@@ -3,8 +3,8 @@ import { devtools, persist } from 'zustand/middleware';
 import { createAuthSlice, AuthSlice } from './authStore.ts';
 import { createDashboardSlice, DashboardSlice } from './dashboardStore.ts';
 import { createTransactionSlice, TransactionSlice } from './transactionsStore.ts';
-
-type StoreState = AuthSlice & DashboardSlice & TransactionSlice;
+import {AccountStatementSlice, CreateAccountStatementSlice} from './accountStatementStore.ts'
+type StoreState = AuthSlice & DashboardSlice & TransactionSlice & AccountStatementSlice;
 
 export const useAppStore = create<StoreState>()(
     devtools(
@@ -13,6 +13,7 @@ export const useAppStore = create<StoreState>()(
                 ...createAuthSlice(...args),
                 ...createDashboardSlice(...args),
                 ...createTransactionSlice(...args),
+                ...CreateAccountStatementSlice(...args),
             }),
             {
                 name: 'app-storage', // LocalStorage key

@@ -18,7 +18,7 @@ export const userlogin = async (payload: userLogin) => {
 
 export const onboardBusiness = async (payload: registerBusinessAccount) => {
     try {
-        const response = await authorized.post(login, payload);
+        const response = await unauthorized.post('signup', payload);
         console.log('success', response);
         return response.data;
 

@@ -8,8 +8,8 @@ import { Label } from '@/components/ui/label';
 import { toast } from '@/hooks/use-toast';
 
 const LoginForm = () => {
-  const [email, setEmail] = useState('admin@example.com');
-  const [password, setPassword] = useState('password');
+  const [email, setEmail] = useState('info@techhub.com');
+  const [password, setPassword] = useState('SecurePass123!');
   const [isLoading, setIsLoading] = useState(false);
   // const login = useAppStore((state) => state.login);
   const navigate = useNavigate();

@@ -6,12 +6,13 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Download, Calendar } from 'lucide-react';
 import { toast } from '@/hooks/use-toast';
+import {downloadReport} from '@/services/utilites/config.ts'
 
 const InwardReports = () => {
   const [dateFrom, setDateFrom] = useState('');
   const [dateTo, setDateTo] = useState('');
 
-  const handleDownload = (format: 'pdf' | 'csv') => {
+  const handleDownload = async (format: 'pdf' | 'csv') => {
     if (!dateFrom || !dateTo) {
       toast({
         title: "Missing Date Range",
@@ -20,11 +21,30 @@ const InwardReports = () => {
       });
       return;
     }
-
+    const payload = {
+      format: format,
+      filter: {},
+      endpoint: '/download/inward_report',
+    }
     toast({
       title: "Download Started",
       description: `Downloading ${format.toUpperCase()} report for ${dateFrom} to ${dateTo}`,
     });
+    const downloadInProgress = await downloadReport(payload);
+
+    if (downloadInProgress  === true) {
+      toast({
+        title: "Download Completed",
+        description: `Downloading ${format.toUpperCase()} report for ${dateFrom} to ${dateTo}`,
+      });
+    }else {
+      toast({
+        title: "Download Failed",
+        description: `Download for  ${format.toUpperCase()} report for ${dateFrom} to ${dateTo} failed`,
+      });
+    }
+
+  // 08135400689
   };
 
   return (
