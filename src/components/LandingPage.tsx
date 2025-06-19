@@ -54,7 +54,7 @@ const Landing = () => {
                             <div className="p-2 bg-blue-600 rounded-lg">
                                 <DollarSign className="h-6 w-6 text-white" />
                             </div>
-                            <span className="text-2xl font-bold text-gray-900">MFBPay</span>
+                            <span className="text-2xl font-bold text-gray-900">M-Pay</span>
                         </div>
                         <div className="flex items-center space-x-4">
                             <Button variant="outline" asChild>
@@ -149,7 +149,7 @@ const Landing = () => {
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
                         <div>
                             <h2 className="text-4xl font-bold text-white mb-6">
-                                Why choose MFBPay?
+                                Why choose M-Pay?
                             </h2>
                             <div className="space-y-6">
                                 {[
@@ -218,7 +218,7 @@ const Landing = () => {
                                 <div className="p-2 bg-blue-600 rounded-lg">
                                     <DollarSign className="h-5 w-5 text-white" />
                                 </div>
-                                <span className="text-xl font-bold">MFBPay</span>
+                                <span className="text-xl font-bold">M-Pay</span>
                             </div>
                             <p className="text-gray-400">
                                 The future of  payment processing, built for modern businesses.
@@ -253,7 +253,7 @@ const Landing = () => {
                         </div>
                     </div>
                     <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-                        <p>&copy; 2024 MFBPay. All rights reserved.</p>
+                        <p>&copy; 2024 M-Pay. All rights reserved.</p>
                     </div>
                 </div>
             </footer>
