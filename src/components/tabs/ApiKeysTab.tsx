@@ -39,14 +39,11 @@ export const ApiKeysTab = () => {
               <TableRow>
                 <TableCell>Publishable key</TableCell>
                 <TableCell className="font-mono text-sm">
-                  **********
-                  {/*pk_test_51OzijwEg5PIUmrZChAovb4GlWeJ3VrjuQ*/}
+                  pk_test_51OzijwEg5PIUmrZChAovb4GlWeJ3VrjuQ
                   <br />
-                  **********
-                  {/*rFJKN0VXSAGNl4AhajV1Sf86THqrb50DFaDRURQGFH*/}
+                  rFJKN0VXSAGNl4AhajV1Sf86THqrb50DFaDRURQGFH
                   <br />
-                  ***********
-                  {/*BivlF9cfLdcVm00k09Db00U*/}
+                  BivlF9cfLdcVm00k09Db00U
                 </TableCell>
                 <TableCell>5 Jun</TableCell>
                 <TableCell className="flex items-center gap-2">
@@ -62,14 +59,11 @@ export const ApiKeysTab = () => {
               <TableRow>
                 <TableCell>Secret key</TableCell>
                 <TableCell className="font-mono text-sm">
-                  *****************
-                  {/*sk_test_51OzijwEg5PIUmrZCFCG3hF2cUx4TlPuxb*/}
+                  sk_test_51OzijwEg5PIUmrZCFCG3hF2cUx4TlPuxb
                   <br />
-                  ********
-                  {/*AW6m9mbo2PKsDuH8InNUVGU6xO2NBVZyJGn0jCWpR*/}
+                  AW6m9mbo2PKsDuH8InNUVGU6xO2NBVZyJGn0jCWpR
                   <br />
-                  *********
-                  {/*LuTYu0pV6IC3B00RqsIyx0*/}
+                  LuTYu0pV6IC3B00RqsIyx0
                 </TableCell>
                 <TableCell>8 Jun</TableCell>
                 <TableCell className="flex items-center gap-2">
